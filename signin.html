@@ -1040,7 +1040,7 @@
 
           <form class="form form--login is-hidden" novalidate>
             <header class="form__messaging form__messaging--left">
-              <h1 class="form__title">Log in</h1>
+              <h1 class="form__title">Log in to your account</h1>
             </header>
 
             <div class="field">
@@ -1088,9 +1088,9 @@
               <a href="#" class="forgot-link">Forgot password?</a>
             </div>
 
-            <button type="submit" class="btn-primary" disabled>Continue</button>
+            <button type="submit" class="btn-primary" disabled>Log in</button>
 
-            <button type="button" class="btn-secondary">Login without password</button>
+            <button type="button" class="btn-secondary">Log in without password</button>
 
             <div class="divider" aria-hidden="true">
               <span>or use</span>
@@ -1315,7 +1315,7 @@
 
       loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        if (!loginCTA.disabled) loginCTA.textContent = "Continuing…";
+        if (!loginCTA.disabled) loginCTA.textContent = "Logging in…";
       });
 
       // Password show/hide toggle (swaps eye icon)
