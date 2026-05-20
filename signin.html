@@ -833,36 +833,25 @@
         background: #000050;
       }
 
-      /* Tablet & smaller — stacked layout, both panels share viewport */
+      /* Tablet & smaller — value panel on TOP, form below */
       @media (max-width: 1024px) {
         .modal {
           flex-direction: column;
           overflow: hidden;
         }
-        .close-btn {
-          position: fixed;
-          top: 24px;
-          right: 24px;
-        }
-        .form-panel {
-          flex: 1 1 0;
-          min-height: 0;
-          width: 100%;
-          align-self: stretch;
-          padding: var(--sp-l);
-        }
-        .form-wrap {
-          padding: 0;
-        }
-        .form {
-          width: 432px;
+        .brand {
+          position: absolute;
+          top: 48px;
+          left: 48px;
+          z-index: 10;
         }
         .preview-panel {
+          order: -1;
           flex: 1 1 0;
           min-height: 0;
           width: auto;
           align-self: stretch;
-          margin: 96px 24px 24px;
+          margin: 24px 24px 0;
           padding: 0 32px;
           gap: 32px;
           max-height: 100vh;
@@ -874,7 +863,21 @@
             padding 500ms cubic-bezier(0.22, 1, 0.36, 1);
         }
         .form-panel {
+          flex: 1 1 0;
+          min-height: 0;
+          width: 100%;
+          align-self: stretch;
+          padding: var(--sp-l);
           transition: flex-grow 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .form-wrap {
+          padding: 0;
+        }
+        .form {
+          width: 432px;
+        }
+        .form__messaging {
+          text-align: center;
         }
         .preview {
           padding: 0;
@@ -898,6 +901,14 @@
           padding-bottom: 0;
           pointer-events: none;
         }
+        .modal.is-login-active .brand {
+          top: 24px;
+          left: 24px;
+        }
+        .modal.is-login-active .close-btn {
+          top: 24px;
+          right: 24px;
+        }
       }
 
       /* Mobile — hide preview, reorder signup form, login keeps natural order */
@@ -907,6 +918,15 @@
         }
         .modal::after {
           display: none;
+        }
+        .brand {
+          position: static;
+          top: auto;
+          left: auto;
+        }
+        .close-btn {
+          top: 24px;
+          right: 24px;
         }
         .form-panel {
           min-height: 100vh;
