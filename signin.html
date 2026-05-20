@@ -1,0 +1,1333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign up to continue · Stepstone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* Colors (from Figma variables) */
+        --text-primary: #000050;
+        --text-secondary: #4e5463;
+        --text-tertiary: #6c7284;
+        --text-heading: #0c2577;
+        --text-on-dark: #ffffff;
+        --text-actionable: #003a42;
+        --icon-actionable: #003a42;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f7fa;
+        --bg-accent-subdued: #f5f9ff;
+        --bg-actionable-subdued: #f2fdfb;
+        --bg-disabled: #f1f4f8;
+        --text-disabled: #bcc2d2;
+        --border-default: #d6ddeb;
+        --border-subdued: #e5e9f2;
+        --border-form: #8d94a5;
+        --accent-blue: #425ec9;
+        --accent-light-teal: #abe5e8;
+        --accent-light-teal-strong: #003a42;
+        --accent-light-coral: #ff9e8c;
+        --cta: #008194;
+        --brand-default: #0a1e5f;
+        --overlay: rgba(0, 0, 0, 0.65);
+        --tag-default-bg: #ebeef5;
+        --tag-default-fg: #000050;
+        --tag-accent-blue-bg: #e6f0ff;
+
+        /* Type scale */
+        --font-family: "Relative Pro", "Inter", -apple-system,
+          BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        --fs-12: 12px;
+        --fs-14: 14px;
+        --fs-16: 16px;
+        --fs-18: 18px;
+        --fs-20: 20px;
+        --fs-24: 24px;
+        --fs-32: 32px;
+
+        /* Spacing */
+        --sp-xxs: 2px;
+        --sp-xs: 4px;
+        --sp-s: 8px;
+        --sp-s2: 12px;
+        --sp-m: 16px;
+        --sp-m2: 20px;
+        --sp-l: 24px;
+        --sp-xl: 32px;
+        --sp-xxxl: 128px;
+
+        /* Radius */
+        --r-m: 4px;
+        --r-l: 8px;
+        --r-l4: 12px;
+        --r-xl: 16px;
+        --r-round: 999px;
+
+        /* Shadows */
+        --shadow-card: 0 0 1px rgba(0, 0, 80, 0.05),
+          0 1px 1px rgba(0, 0, 80, 0.04), 0 3px 2px rgba(0, 0, 80, 0.03),
+          0 5px 2px rgba(0, 0, 80, 0.01);
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+        --shadow-m: 0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-family);
+        color: var(--text-primary);
+        background: #f4f5f8;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Modal shell */
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: var(--bg-primary);
+        display: flex;
+        overflow: hidden;
+      }
+
+      /* --- Left panel: sign-up form --- */
+      .form-panel {
+        position: relative;
+        padding: var(--sp-xl);
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 0;
+        align-self: stretch;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .brand img {
+        width: 150px;
+        height: 28px;
+        display: block;
+      }
+
+      .form-wrap {
+        flex: 1;
+        display: grid;
+        place-items: center;
+        padding: var(--sp-xl) 0;
+      }
+
+      .form {
+        width: 408px;
+        max-width: 100%;
+        grid-area: 1 / 1;
+        opacity: 1;
+        transition: opacity 600ms ease, visibility 0s;
+      }
+      .form.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 350ms ease, visibility 0s 350ms;
+      }
+
+      .form__messaging {
+        text-align: left;
+        margin-bottom: var(--sp-xl);
+      }
+      .form__title {
+        margin: 0 0 var(--sp-s);
+        font-size: var(--fs-32);
+        line-height: 36px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+      .form__subtitle {
+        margin: 0;
+        font-size: var(--fs-16);
+        line-height: 24px;
+        color: var(--text-secondary);
+        font-weight: 350;
+      }
+
+      .social-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-m);
+        margin-bottom: var(--sp-xl);
+      }
+      .btn-social {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--sp-s);
+        height: 40px;
+        background: var(--bg-primary);
+        border: 1px solid var(--text-actionable);
+        border-radius: var(--r-l4);
+        color: var(--text-actionable);
+        font-family: inherit;
+        font-size: var(--fs-16);
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 120ms ease, border-color 120ms ease;
+      }
+      .btn-social:hover {
+        background: var(--bg-actionable-subdued);
+      }
+      .btn-social svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .divider {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: var(--sp-s2);
+        color: var(--text-secondary);
+        font-size: var(--fs-14);
+        line-height: 20px;
+        margin-bottom: var(--sp-l);
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        height: 1px;
+        background: var(--border-subdued);
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-s);
+        margin-bottom: var(--sp-l);
+      }
+      .field label {
+        font-size: var(--fs-14);
+        line-height: 20px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .field input {
+        height: 48px;
+        padding: 10px var(--sp-m);
+        border: 1px solid var(--border-form);
+        border-radius: var(--r-l4);
+        background: var(--bg-primary);
+        font-family: inherit;
+        font-size: var(--fs-16);
+        line-height: 24px;
+        color: var(--text-primary);
+        transition: border-color 120ms ease, box-shadow 120ms ease;
+      }
+      .field input::placeholder {
+        color: var(--text-tertiary);
+      }
+      .field input:focus {
+        outline: none;
+        border-color: var(--cta);
+        box-shadow: 0 0 0 3px rgba(0, 129, 148, 0.15);
+      }
+
+      .btn-primary {
+        width: 100%;
+        height: 48px;
+        border: 0;
+        border-radius: var(--r-l4);
+        background: var(--bg-disabled);
+        color: var(--text-disabled);
+        font-family: inherit;
+        font-size: var(--fs-16);
+        font-weight: 500;
+        cursor: not-allowed;
+        transition: background 120ms ease, color 120ms ease;
+        margin-bottom: var(--sp-l);
+      }
+      .btn-primary.is-enabled {
+        border-radius: 12px;
+        background: #005966;
+        color: var(--text-on-dark);
+        cursor: pointer;
+      }
+      .btn-primary.is-enabled:hover {
+        background: #00434d;
+      }
+
+      .legal {
+        margin: 0;
+        font-size: var(--fs-12);
+        line-height: 18px;
+        color: var(--text-tertiary);
+        text-align: center;
+      }
+
+      /* --- Login form (Welcome back) --- */
+      .form--login {
+        text-align: left;
+      }
+      .form--login .form__title {
+        text-align: left;
+      }
+
+      .field-input-wrap {
+        position: relative;
+        width: 100%;
+      }
+      .field-input-wrap input {
+        width: 100%;
+        padding-right: 48px;
+      }
+      .field-input-wrap input[readonly] {
+        background: #f5f7fa;
+        cursor: not-allowed;
+      }
+      .field-icon-btn {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border: 0;
+        background: transparent;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        color: var(--text-primary);
+        padding: 0;
+      }
+      .field-icon-btn:hover {
+        background: var(--bg-secondary);
+        border-radius: var(--r-m);
+      }
+      .field-icon-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+      .field-icon-btn .eye-open { display: none; }
+      .field-icon-btn.is-visible .eye-closed { display: none; }
+      .field-icon-btn.is-visible .eye-open { display: block; }
+
+      .checkbox-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--sp-l);
+      }
+      .checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .checkbox input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+      }
+      .checkbox__box {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 1.5px solid #8d94a5;
+        background: #ffffff;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        transition: background 120ms ease, border-color 120ms ease;
+      }
+      .checkbox__box svg {
+        width: 14px;
+        height: 14px;
+        color: #ffffff;
+        opacity: 0;
+        transition: opacity 120ms ease;
+      }
+      .checkbox input:checked + .checkbox__box {
+        background: #003a42;
+        border-color: #003a42;
+      }
+      .checkbox input:checked + .checkbox__box svg {
+        opacity: 1;
+      }
+      .checkbox input:focus-visible + .checkbox__box {
+        outline: 2px solid var(--cta);
+        outline-offset: 2px;
+      }
+      .checkbox__label {
+        font-size: var(--fs-14);
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .forgot-link {
+        font-size: var(--fs-14);
+        font-weight: 500;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .forgot-link:hover {
+        text-decoration: underline;
+      }
+
+      .btn-secondary {
+        width: 100%;
+        height: 48px;
+        border: 1px solid #003a42;
+        border-radius: 12px;
+        background: #ffffff;
+        color: #003a42;
+        font-family: inherit;
+        font-size: var(--fs-16);
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 120ms ease;
+        margin-bottom: var(--sp-l);
+      }
+      .btn-secondary:hover {
+        background: var(--bg-actionable-subdued);
+      }
+
+      .btn-link {
+        background: none;
+        border: 0;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: var(--fs-14);
+        font-weight: 700;
+        cursor: pointer;
+        padding: 8px 0;
+        margin: 0 auto var(--sp-l);
+        display: block;
+      }
+      .btn-link:hover {
+        text-decoration: underline;
+      }
+      .legal a {
+        color: var(--cta);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .legal a:hover {
+        text-decoration: underline;
+      }
+
+      /* --- Right panel: job preview --- */
+      .preview-panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 72px;
+        box-sizing: border-box;
+        gap: 64px;
+        background: #E6F0FF;
+        flex: 0 0 calc(50% - 24px);
+        align-self: stretch;
+        margin: 24px 24px 24px 0;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: background-color 800ms ease;
+      }
+
+      .states-wrap {
+        position: relative;
+        width: 100%;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 48px;
+        right: 48px;
+        width: 32px;
+        height: 32px;
+        border: 0;
+        border-radius: var(--r-l);
+        background: var(--bg-primary);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: background 120ms ease;
+        z-index: 10;
+      }
+      .close-btn:hover {
+        background: var(--bg-secondary);
+      }
+      .close-btn svg {
+        width: 18px;
+        height: 18px;
+        color: var(--text-primary);
+      }
+
+      .preview {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 64px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 800ms ease;
+      }
+      .preview.is-active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Stacked job cards */
+      .card-stack {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 466px;
+      }
+
+      /* State 2: Search recommendation card */
+      .info-card {
+        width: 100%;
+        max-width: 418px;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 8px;
+        box-shadow: 0 24px 56px rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+      }
+      .info-card__inner {
+        background: linear-gradient(180deg, #ffffff 0%, #ffffff 35%, #fbf7fe 58%, #f6eefc 83%, #ebdbf5 100%);
+        border-radius: 16px;
+        padding: 20px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .info-card__pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 24px;
+      }
+      .info-card__pill-text {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        color: #000050;
+      }
+      .info-card__title {
+        margin: 0;
+        font-size: 32px;
+        line-height: 36px;
+        font-weight: 500;
+        color: #000050;
+      }
+      .info-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag--highlight {
+        background: #ffffff;
+        border: 1px solid #6b21a8;
+        color: #6b21a8;
+      }
+      .tag--inverted {
+        background: #ffffff;
+        border: 1px solid #e5e9f2;
+        color: #4e5463;
+      }
+
+      /* State 3: Applied job-card stack */
+      .applied-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 448px;
+      }
+      .applied-card {
+        background: #ffffff;
+        border-radius: 16px;
+        margin-top: -64px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        min-height: 72px;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .applied-card:nth-of-type(2) { width: 96%; z-index: 3; }
+      .applied-card:nth-of-type(3) { width: 92%; z-index: 2; }
+      .applied-card:nth-of-type(4) { width: 88%; z-index: 1; }
+      .applied-card--top {
+        margin-top: 0;
+        box-shadow: 0 24px 28px rgba(0, 0, 0, 0.08);
+        z-index: 4;
+        min-height: 0;
+      }
+      .applied-card__row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        padding: 12px;
+      }
+      .applied-card__main {
+        flex: 1 0 0;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .applied-card__logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        background: #9fe870;
+        border: 1px solid #c8f0ad;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .applied-card__logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      .applied-card__logo svg {
+        width: 28px;
+        height: 28px;
+      }
+      .applied-card__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+      }
+      .applied-card__company {
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 500;
+        color: #000050;
+      }
+      .applied-card__title {
+        font-size: 18px;
+        line-height: 26px;
+        font-weight: 700;
+        color: #000050;
+      }
+      .applied-card__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 32px;
+        padding: 0 12px;
+        border-radius: 8px;
+        background: #e5fff0;
+        color: #005221;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .applied-card__tag svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      /* AI Spinner */
+      .ai-spinner {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, #29d3df, #ff9e8c 50%, #29d3df 100%);
+        -webkit-mask: radial-gradient(circle at center, transparent 55%, #000 60%);
+        mask: radial-gradient(circle at center, transparent 55%, #000 60%);
+        animation: ai-spin 1.5s linear infinite;
+        flex-shrink: 0;
+      }
+      @keyframes ai-spin {
+        to { transform: rotate(360deg); }
+      }
+      .job-card {
+        background: #ffffff;
+        border-radius: 10px;
+        display: flex;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        overflow: hidden;
+      }
+      .job-card--back-2 {
+        position: absolute;
+        inset: 0;
+        transform: rotate(5.66deg);
+        filter: drop-shadow(0 8px 16px rgba(57, 57, 57, 0.12));
+      }
+      .job-card--back-1 {
+        display: none;
+      }
+      .job-card--front {
+        position: relative;
+        width: 100%;
+        transform: rotate(-2.41deg);
+        filter: drop-shadow(0 8px 16px rgba(57, 57, 57, 0.16));
+      }
+      .job-card__logo--placeholder {
+        background: #e5e9f2;
+        border: none;
+      }
+
+      .job-card__head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+      .job-card__logo {
+        width: 55px;
+        height: 53px;
+        border-radius: 7px;
+        background: #ffffff;
+        border: 0.834px solid #cfd6e7;
+        padding: 7px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .job-card__logo svg {
+        width: 100%;
+        height: 100%;
+      }
+      .job-card__title-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+      }
+      .job-card__title {
+        margin: 0;
+        font-size: 18px;
+        line-height: 25px;
+        font-weight: 700;
+        color: #000050;
+      }
+      .job-card__tags {
+        display: flex;
+        gap: 8px;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 500;
+      }
+      .tag--default {
+        background: #ffffff;
+        border: 1px solid #e5e9f2;
+        color: #4e5463;
+      }
+      .tag--accent {
+        background: #e6f0ff;
+        color: #425ec9;
+      }
+      .tag--teal {
+        background: #f2fdfb;
+        color: #003a42;
+      }
+
+      .job-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+      }
+      .meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: 500;
+        color: #000050;
+      }
+      .meta-item svg {
+        width: 20px;
+        height: 20px;
+        color: #000050;
+        flex-shrink: 0;
+      }
+
+      .job-card__skeleton {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+      }
+      .skel {
+        height: 12px;
+        border-radius: 4px;
+        background: #f7f8fa;
+      }
+      .skel--w-100 { width: 100%; }
+      .skel--w-90 { width: 100%; }
+      .skel--w-60 { width: 64%; }
+
+      .preview__heading {
+        margin: 0;
+        text-align: center;
+        font-size: var(--fs-32);
+        line-height: 40px;
+        font-weight: 700;
+        color: var(--text-primary);
+        max-width: 460px;
+      }
+
+      .progress-tracker {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #d6ddeb;
+        transition: width 800ms cubic-bezier(0.4, 0, 0.2, 1),
+          background-color 800ms ease;
+      }
+      .dot--active {
+        width: 28px;
+        background: #000050;
+      }
+
+      /* Tablet & smaller — stacked layout, both panels share viewport */
+      @media (max-width: 1024px) {
+        .modal {
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .close-btn {
+          position: fixed;
+          top: 24px;
+          right: 24px;
+        }
+        .form-panel {
+          flex: 1 1 0;
+          min-height: 0;
+          width: 100%;
+          align-self: stretch;
+          padding: var(--sp-l);
+        }
+        .form-wrap {
+          padding: 0;
+        }
+        .form {
+          width: 432px;
+        }
+        .preview-panel {
+          flex: 1 1 0;
+          min-height: 0;
+          width: auto;
+          align-self: stretch;
+          margin: 0 24px 24px;
+          padding: 0 32px;
+          gap: 32px;
+          max-height: 100vh;
+          overflow: hidden;
+          transition: background-color 800ms ease,
+            opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+            max-height 500ms cubic-bezier(0.22, 1, 0.36, 1),
+            margin 500ms cubic-bezier(0.22, 1, 0.36, 1),
+            padding 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .form-panel {
+          transition: flex-grow 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .preview {
+          padding: 0;
+          gap: 32px;
+        }
+        .states-wrap {
+          min-height: 260px;
+        }
+        .preview__heading {
+          font-size: 24px;
+          line-height: 32px;
+          max-width: 100%;
+        }
+        /* Once user has entered email, collapse the value-add panel on tablet */
+        .modal.is-login-active .preview-panel {
+          opacity: 0;
+          max-height: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          pointer-events: none;
+        }
+      }
+
+      /* Mobile — hide preview, reorder signup form, login keeps natural order */
+      @media (max-width: 768px) {
+        .preview-panel {
+          display: none;
+        }
+        .modal::after {
+          display: none;
+        }
+        .form-panel {
+          min-height: 100vh;
+          padding: var(--sp-l);
+        }
+        .form {
+          width: 100%;
+          max-width: 432px;
+          display: flex;
+          flex-direction: column;
+        }
+        .form__messaging {
+          text-align: left;
+          margin-bottom: var(--sp-l);
+        }
+        .social-row {
+          grid-template-columns: 1fr;
+        }
+        .legal {
+          text-align: center;
+        }
+        /* Signup form reorder: email above social */
+        .form--signup .form__messaging { order: 1; }
+        .form--signup .field { order: 2; margin-bottom: var(--sp-m); }
+        .form--signup .btn-primary { order: 3; margin-bottom: var(--sp-l); }
+        .form--signup .divider { order: 4; margin-bottom: var(--sp-l); }
+        .form--signup .social-row { order: 5; margin-bottom: var(--sp-l); }
+        .form--signup .legal { order: 6; }
+      }
+
+      @media (max-width: 480px) {
+        .form__title {
+          font-size: var(--fs-24);
+          line-height: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+      <!-- LEFT: sign-up form -->
+      <section class="form-panel">
+        <a href="#" class="brand" aria-label="Stepstone home">
+          <img src="assets/Brand%20Logo.png" alt="Stepstone" />
+        </a>
+
+        <div class="form-wrap">
+          <form class="form form--signup" novalidate>
+            <header class="form__messaging">
+              <h1 id="signup-title" class="form__title">Sign up to continue</h1>
+              <p class="form__subtitle">Save jobs, get matched, and apply faster.</p>
+            </header>
+
+            <div class="social-row">
+              <button type="button" class="btn-social" aria-label="Continue with Apple">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.05 12.04c-.02-2.05 1.67-3.04 1.74-3.08-.95-1.39-2.42-1.58-2.95-1.6-1.25-.13-2.45.74-3.08.74-.65 0-1.62-.72-2.67-.7-1.37.02-2.65.8-3.36 2.03-1.44 2.49-.37 6.18 1.03 8.21.69 1 1.5 2.11 2.55 2.08 1.03-.04 1.42-.66 2.66-.66 1.23 0 1.59.66 2.67.64 1.11-.02 1.81-1.01 2.49-2.01.79-1.16 1.11-2.28 1.13-2.34-.03-.01-2.17-.83-2.21-3.31zM15.18 6.06c.55-.68.93-1.61.83-2.55-.8.03-1.78.54-2.36 1.21-.51.59-.97 1.55-.85 2.47.9.07 1.82-.46 2.38-1.13z"/>
+                </svg>
+                Apple
+              </button>
+              <button type="button" class="btn-social" aria-label="Continue with Google">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.1A6.96 6.96 0 0 1 5.47 12c0-.73.13-1.44.37-2.1V7.07H2.18A11 11 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/>
+                </svg>
+                Google
+              </button>
+            </div>
+
+            <div class="divider" aria-hidden="true">
+              <span>or continue with email</span>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="Enter your email address"
+                aria-describedby="legal"
+              />
+            </div>
+
+            <button type="submit" class="btn-primary" disabled>Continue</button>
+
+            <p id="legal" class="legal">
+              By signing up, you agree to our
+              <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+            </p>
+          </form>
+
+          <form class="form form--login is-hidden" novalidate>
+            <header class="form__messaging form__messaging--left">
+              <h1 class="form__title">Welcome back</h1>
+            </header>
+
+            <div class="field">
+              <label for="email-display">Email address</label>
+              <div class="field-input-wrap">
+                <input id="email-display" type="email" readonly value="" />
+                <button type="button" class="field-icon-btn" aria-label="Edit email" data-action="edit-email">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="field-input-wrap">
+                <input id="password" type="password" placeholder="Enter your password" />
+                <button type="button" class="field-icon-btn" aria-label="Show password" data-action="toggle-password">
+                  <svg class="eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                    <path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                    <line x1="2" y1="2" x2="22" y2="22"/>
+                  </svg>
+                  <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="checkbox-row">
+              <label class="checkbox">
+                <input type="checkbox" checked />
+                <span class="checkbox__box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span class="checkbox__label">Stay logged in</span>
+              </label>
+              <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-primary" disabled>Continue</button>
+
+            <button type="button" class="btn-secondary">Login without password</button>
+
+            <div class="divider" aria-hidden="true">
+              <span>or use</span>
+            </div>
+
+            <div class="social-row">
+              <button type="button" class="btn-social" aria-label="Continue with Google">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.1A6.96 6.96 0 0 1 5.47 12c0-.73.13-1.44.37-2.1V7.07H2.18A11 11 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/>
+                </svg>
+                Google
+              </button>
+              <button type="button" class="btn-social" aria-label="Continue with Apple">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.05 12.04c-.02-2.05 1.67-3.04 1.74-3.08-.95-1.39-2.42-1.58-2.95-1.6-1.25-.13-2.45.74-3.08.74-.65 0-1.62-.72-2.67-.7-1.37.02-2.65.8-3.36 2.03-1.44 2.49-.37 6.18 1.03 8.21.69 1 1.5 2.11 2.55 2.08 1.03-.04 1.42-.66 2.66-.66 1.23 0 1.59.66 2.67.64 1.11-.02 1.81-1.01 2.49-2.01.79-1.16 1.11-2.28 1.13-2.34-.03-.01-2.17-.83-2.21-3.31zM15.18 6.06c.55-.68.93-1.61.83-2.55-.8.03-1.78.54-2.36 1.21-.51.59-.97 1.55-.85 2.47.9.07 1.82-.46 2.38-1.13z"/>
+                </svg>
+                Apple
+              </button>
+            </div>
+
+            <p class="legal">
+              By signing up, you agree to our
+              <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <!-- RIGHT: job preview -->
+      <button class="close-btn" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+
+      <aside class="preview-panel" aria-label="Job preview">
+        <div class="states-wrap">
+        <div class="preview is-active" data-state="1" data-bg="#E6F0FF">
+          <div class="card-stack" aria-hidden="true">
+            <div class="job-card job-card--back-2">
+              <div class="job-card__logo job-card__logo--placeholder"></div>
+            </div>
+            <article class="job-card job-card--front">
+              <div class="job-card__head">
+                <div class="job-card__logo">
+                  <svg viewBox="0 0 36 36" aria-hidden="true">
+                    <path fill="#4285F4" d="M35.3 18.4c0-1.3-.1-2.5-.3-3.7H18v7h9.7c-.4 2.2-1.7 4.2-3.6 5.4v4.5h5.8c3.4-3.1 5.4-7.8 5.4-13.2z"/>
+                    <path fill="#34A853" d="M18 36c4.9 0 8.9-1.6 11.9-4.4l-5.8-4.5c-1.6 1.1-3.7 1.7-6.1 1.7-4.7 0-8.6-3.1-10-7.4H2v4.7C4.9 32 11 36 18 36z"/>
+                    <path fill="#FBBC05" d="M8 21.4c-.4-1.1-.6-2.3-.6-3.4 0-1.2.2-2.3.6-3.4V9.9H2C.7 12.4 0 15.1 0 18s.7 5.6 2 8.1l6-4.7z"/>
+                    <path fill="#EA4335" d="M18 7.2c2.6 0 5 .9 6.8 2.7l5.1-5.1C26.9 1.8 22.9 0 18 0 11 0 4.9 4 2 9.9L8 14.6c1.4-4.3 5.3-7.4 10-7.4z"/>
+                  </svg>
+                </div>
+                <div class="job-card__title-wrap">
+                  <h2 class="job-card__title">Senior Engineer</h2>
+                  <div class="job-card__tags">
+                    <span class="tag tag--default">Posted today</span>
+                    <span class="tag tag--accent">Fast apply</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="job-card__meta">
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"/>
+                    <path d="M7 8h6M7 12h10M7 16h7"/>
+                  </svg>
+                  Google
+                </span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12z"/>
+                    <circle cx="12" cy="10" r="2.5"/>
+                  </svg>
+                  London
+                </span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v5l3 2"/>
+                  </svg>
+                  Full time
+                </span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="20" height="12" rx="2"/>
+                    <circle cx="12" cy="12" r="2.5"/>
+                    <path d="M6 10v.01M18 14v.01"/>
+                  </svg>
+                  £100k + stock
+                </span>
+              </div>
+
+              <div class="job-card__skeleton">
+                <div class="skel skel--w-100"></div>
+                <div class="skel skel--w-90"></div>
+                <div class="skel skel--w-60"></div>
+              </div>
+            </article>
+          </div>
+
+          <h2 class="preview__heading">
+            Explore over 540 software engineer roles in London
+          </h2>
+
+        </div>
+
+        <div class="preview" data-state="2" data-bg="#F6EEFC">
+          <div class="info-card" aria-hidden="true">
+            <div class="info-card__inner">
+              <div class="info-card__pill">
+                <span class="ai-spinner"></span>
+                <span class="info-card__pill-text">New search available</span>
+              </div>
+              <h2 class="info-card__title">Increase your<br />salary by up to 20%</h2>
+              <div class="info-card__tags">
+                <span class="tag tag--highlight">Staff engineer</span>
+                <span class="tag tag--inverted">Salary up to 160k</span>
+                <span class="tag tag--inverted">High Interview Chance</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="preview__heading">
+            Get real time search recommendations
+          </h2>
+
+        </div>
+
+        <div class="preview" data-state="3" data-bg="#F2FDFB">
+          <div class="applied-stack" aria-hidden="true">
+            <div class="applied-card applied-card--top">
+              <div class="applied-card__row">
+                <div class="applied-card__main">
+                  <div class="applied-card__logo">
+                    <img src="assets/wise%20logo.png" alt="Wise" onerror="this.style.display='none'; this.parentNode.querySelector('svg').style.display='block';" />
+                    <svg viewBox="0 0 32 32" aria-hidden="true" style="display:none">
+                      <path d="M9 12 L15 18 L21 12 M9 18 L15 12 L21 18" stroke="#163300" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="applied-card__info">
+                    <span class="applied-card__company">Wise</span>
+                    <span class="applied-card__title">Senior Engineer</span>
+                  </div>
+                </div>
+                <div class="applied-card__tag">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#005221" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 20 L9 8 L19 18 Z" fill="#9fe870" fill-opacity="0.4"/>
+                    <path d="M14 5 L16 3 M18 7 L20 5 M16 9 L18 9"/>
+                  </svg>
+                  Applied!
+                </div>
+              </div>
+            </div>
+            <div class="applied-card"></div>
+            <div class="applied-card"></div>
+            <div class="applied-card"></div>
+          </div>
+          <h2 class="preview__heading">
+            Apply for roles tailored<br />to your preferences
+          </h2>
+        </div>
+
+        </div>
+
+        <div class="progress-tracker" role="tablist" aria-label="Progress">
+          <span class="dot dot--active" role="tab" aria-selected="true"></span>
+          <span class="dot" role="tab" aria-selected="false"></span>
+          <span class="dot" role="tab" aria-selected="false"></span>
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      // Swap divider text between desktop and mobile layouts
+      const dividerLabel = document.querySelector(".divider span");
+      const mobileMQ = window.matchMedia("(max-width: 768px)");
+      const updateDividerText = () => {
+        dividerLabel.textContent = mobileMQ.matches
+          ? "or use"
+          : "or continue with email";
+      };
+      mobileMQ.addEventListener("change", updateDividerText);
+      updateDividerText();
+
+      // Enable Continue button when any text is entered
+      const email = document.getElementById("email");
+      const cta = document.querySelector(".btn-primary");
+      email.addEventListener("input", () => {
+        const hasText = email.value.trim().length > 0;
+        cta.classList.toggle("is-enabled", hasText);
+        cta.disabled = !hasText;
+      });
+
+      // Transition signup → login form on submit
+      const modalEl = document.querySelector(".modal");
+      const signupForm = document.querySelector(".form--signup");
+      const loginForm = document.querySelector(".form--login");
+      const emailDisplay = document.getElementById("email-display");
+      const passwordInput = document.getElementById("password");
+      const loginCTA = loginForm.querySelector(".btn-primary");
+
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (cta.disabled) return;
+        emailDisplay.value = email.value.trim();
+        signupForm.classList.add("is-hidden");
+        loginForm.classList.remove("is-hidden");
+        modalEl.classList.add("is-login-active");
+      });
+
+      // Enable login Continue when password has any text
+      passwordInput.addEventListener("input", () => {
+        const ok = passwordInput.value.length > 0;
+        loginCTA.classList.toggle("is-enabled", ok);
+        loginCTA.disabled = !ok;
+      });
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!loginCTA.disabled) loginCTA.textContent = "Continuing…";
+      });
+
+      // Password show/hide toggle (swaps eye icon)
+      loginForm
+        .querySelector('[data-action="toggle-password"]')
+        .addEventListener("click", function () {
+          const isPwd = passwordInput.type === "password";
+          passwordInput.type = isPwd ? "text" : "password";
+          this.classList.toggle("is-visible", isPwd);
+          this.setAttribute(
+            "aria-label",
+            isPwd ? "Hide password" : "Show password"
+          );
+        });
+
+      // Edit email button — go back to signup form
+      loginForm
+        .querySelector('[data-action="edit-email"]')
+        .addEventListener("click", () => {
+          loginForm.classList.add("is-hidden");
+          signupForm.classList.remove("is-hidden");
+          modalEl.classList.remove("is-login-active");
+        });
+
+      // Close button (demo)
+      document.querySelector(".close-btn").addEventListener("click", () => {
+        document.querySelector(".modal").style.opacity = "0.3";
+      });
+
+      // Cycle through preview states on the right
+      const previewStates = document.querySelectorAll(".preview-panel .preview");
+      const previewPanel = document.querySelector(".preview-panel");
+      const trackerDots = document.querySelectorAll(".progress-tracker .dot");
+      let currentState = 0;
+      if (previewStates.length > 1) {
+        setInterval(() => {
+          previewStates[currentState].classList.remove("is-active");
+          currentState = (currentState + 1) % previewStates.length;
+          const next = previewStates[currentState];
+          next.classList.add("is-active");
+          const bg = next.dataset.bg;
+          if (bg) previewPanel.style.backgroundColor = bg;
+          trackerDots.forEach((d, i) => {
+            d.classList.toggle("dot--active", i === currentState);
+            d.setAttribute("aria-selected", i === currentState ? "true" : "false");
+          });
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>
