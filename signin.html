@@ -435,6 +435,11 @@
       }
 
       /* --- Left panel: value/job preview --- */
+      @property --preview-bg {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #E6F0FF;
+      }
       .preview-panel {
         position: relative;
         display: flex;
@@ -444,14 +449,19 @@
         padding: 0 72px;
         box-sizing: border-box;
         gap: 64px;
-        background: #E6F0FF;
+        --preview-bg: #E6F0FF;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          var(--preview-bg) 100%
+        );
         flex: 0 0 calc(50% - 24px);
         align-self: stretch;
         order: -1;
         margin: 24px 0 24px 24px;
         border-radius: 16px;
         overflow: hidden;
-        transition: background-color 800ms ease;
+        transition: --preview-bg 800ms ease;
       }
 
       .states-wrap {
@@ -870,7 +880,7 @@
           gap: 32px;
           max-height: 100vh;
           overflow: hidden;
-          transition: background-color 800ms ease,
+          transition: --preview-bg 800ms ease,
             opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
             max-height 500ms cubic-bezier(0.22, 1, 0.36, 1),
             margin 500ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -1357,7 +1367,7 @@
           const next = previewStates[currentState];
           next.classList.add("is-active");
           const bg = next.dataset.bg;
-          if (bg) previewPanel.style.backgroundColor = bg;
+          if (bg) previewPanel.style.setProperty("--preview-bg", bg);
           trackerDots.forEach((d, i) => {
             d.classList.toggle("dot--active", i === currentState);
             d.setAttribute("aria-selected", i === currentState ? "true" : "false");
